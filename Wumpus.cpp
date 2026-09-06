@@ -1,3 +1,4 @@
+//Francisco Javier Rojas Hner√°ndez
 #include <iostream>
 #include <vector>
 #include <random>
@@ -44,23 +45,21 @@ void movW(J &j) {
     if (al(1, 100) <= j.prW) {
         int op = al(0, 2);
         j.wum = GRAFO[j.wum][op];
-        cout << "\n* Escuchas un ruido... °El Wumpus se ha movido! *\n";
+        cout << "\n* Escuchas un ruido... ‚Äßl Wumpus se ha movido! *\n";
     }
 }
 
 void rev(J &j) {
     if (j.ju == j.wum) {
-        // ROJO para la muerte
-        cout << "\n\033[1;31m°OH NO! °El Wumpus te ha comido!\033[0m\n";
+        cout << "\n\033[1;31mÔπíH NO! ‚Äßl Wumpus te ha comido!\033[0m\n";
         j.vi = false;
         return;
     }
     if (j.ju == j.h1 || j.ju == j.h2) {
-        // AMARILLO para el hoyo
-        cout << "\n\033[1;33m°Aaaah! °Has caido en un hoyo sin fondo!\033[0m\n";
+        cout << "\n\033[1;33mÔºåaaah! Ôºüas caido en un hoyo sin fondo!\033[0m\n";
         if (j.cu > 0) {
             j.cu--;
-            cout << "\033[1;33m°Por suerte tenias una cuerda extra! Logras salir. (Cuerdas restantes: " << j.cu << ")\033[0m\n";
+            cout << "\033[1;33m¬∑or suerte tenias una cuerda extra! Logras salir. (Cuerdas restantes: " << j.cu << ")\033[0m\n";
             j.ju = al(0, 19);
             rev(j);
             return;
@@ -69,9 +68,8 @@ void rev(J &j) {
             return;
         }
     }
-    if (j.ju == j.m1 || j.ju == j.m2) {
-        // MORADO para los murcielagos
-        cout << "\n\033[1;35m°Unos murcielagos gigantes te agarran y te sueltan en otra habitacion!\033[0m\n";
+    if (j.ju == j.m1 || j.ju == j.m2) {        
+        cout << "\n\033[1;35mÔΩúnos murcielagos gigantes te agarran y te sueltan en otra habitacion!\033[0m\n";
         j.ju = al(0, 19);
         rev(j);
         return;
@@ -132,7 +130,7 @@ int main() {
         }
 
         if (!con) {
-            cout << "\n°No puedes hacer eso! Esa habitacion no esta conectada.\n";
+            cout << "\nÔπëo puedes hacer eso! Esa habitacion no esta conectada.\n";
             continue;
         }
 
@@ -142,21 +140,19 @@ int main() {
             if(j.vi && al(1,100) <= 10) movW(j);
         }
         else if (ac == 2) {
-            if (d == j.wum) {
-                // VERDE para la victoria
-                cout << "\n\033[1;32m°BAM! °Le diste al Wumpus! °HAS GANADO!\033[0m\n";
+            if (d == j.wum) {                
+                cout << "\n\033[1;32m„ÄÅAM! ‚Ä•e diste al Wumpus! ÔºüAS GANADO!\033[0m\n";
                 j.vic = true;
             } else {
                 j.fl--;
                 cout << "\nFallaste. Tu bala se perdio en la oscuridad.\n";
-                if (j.fl <= 0) {
-                    // ROJO para la muerte
-                    cout << "\033[1;31mTe quedaste sin balas... °Estas indefenso y el Wumpus te atrapa!\033[0m\n";
+                if (j.fl <= 0) {                    
+                    cout << "\033[1;31mTe quedaste sin balas... ‚Äßstas indefenso y el Wumpus te atrapa!\033[0m\n";
                     j.vi = false;
                 } else {
                     movW(j);
                     if (j.ju == j.wum) {
-                        cout << "°El Wumpus corrio hacia tu habitacion asustado por la bala!\n";
+                        cout << "‚Äßl Wumpus corrio hacia tu habitacion asustado por la bala!\n";
                         rev(j);
                     }
                 }
